@@ -74,3 +74,23 @@ for (const scheme of ["light", "dark"]) {
     });
   }
 }
+
+test("palettes.cjs gives every remapped colour a full 50–950 scale of hex values", () => {
+  const palettes = createRequire(import.meta.url)("../tailwind/palettes.cjs");
+  const steps = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"];
+  for (const [name, scale] of Object.entries(palettes)) {
+    assert.deepEqual(Object.keys(scale).sort((a, b) => a - b), steps, name);
+    for (const v of Object.values(scale)) assert.match(v, /^#[0-9a-f]{6}$/, name);
+  }
+});
+
+test("palettes.cjs text steps stay readable on their own tints", () => {
+  const palettes = createRequire(import.meta.url)("../tailwind/palettes.cjs");
+  for (const name of ["gray", "red", "amber", "green", "blue"]) {
+    const s = palettes[name];
+    for (const [fg, bg] of [["700", "50"], ["700", "100"], ["800", "50"], ["600", "50"]]) {
+      const ratio = contrast(s[fg], s[bg]);
+      assert.ok(ratio >= 4.5, `${name}-${fg} on ${name}-${bg}: ${ratio.toFixed(2)}:1`);
+    }
+  }
+});

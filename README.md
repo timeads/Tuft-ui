@@ -86,6 +86,20 @@ Lovable to "remove the colour variables from index.css and use the ones from tuf
 <script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/rail/tuft-rail.js"></script>
 ```
 
+### Apps that use Tailwind's stock colours (gray, red, amber …)
+
+If an app's markup is full of `text-gray-500`, `bg-red-50` and `border-amber-200` rather than shadcn
+names, add the palette remap as well. It re-points those scales at the brand: gray/slate become
+stone, red becomes brick, amber becomes ochre, green becomes mint and blue becomes teal. The whole
+app shifts with no markup changes:
+
+```js
+// tailwind.config: after the preset
+theme: { extend: { colors: { ...require("tuft-ui/tailwind/palettes") } } }
+```
+
+The remap is light mode only, because hex values keep `/50`-style opacity working.
+
 ### Tailwind v4
 
 ```css
