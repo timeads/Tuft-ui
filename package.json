@@ -1,6 +1,6 @@
 {
   "name": "tuft-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared look for the Tuft Life internal apps: brand tokens, fonts, shadcn/Tailwind theme and the <tuft-rail> app switcher.",
   "license": "UNLICENSED",
   "private": true,

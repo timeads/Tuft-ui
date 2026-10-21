@@ -68,6 +68,11 @@ Then delete the app's own `:root { --background: …; --primary: … }` block fr
 </div>
 ```
 
+In **React 18**, give `<tuft-rail>` itself `class="…"`, not `className`: React 18 passes props on custom
+elements through unchanged, so `className` becomes a useless `classname` attribute. React 19 handles either.
+Vite apps should also pass `logo={logo}` from `import logo from "tuft-ui/img/logo.png"`, because Vite's
+dependency pre-bundling can break the rail's own relative logo URL.
+
 React Router's `NavLink` sets `aria-current="page"` on the active link, and the rail styles it automatically.
 `.tuft-shell` comes from `css/components.css`; import that too if you want it, or lay the page out yourself.
 

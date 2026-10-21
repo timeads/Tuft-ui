@@ -188,6 +188,7 @@ nav { display: flex; flex-direction: column; gap: 1px; overflow-y: auto; min-hei
 
 /* ---------- Phones: bottom tab bar ---------- */
 @media (max-width: 760px) {
+  :host { height: auto; }
   .rail {
     width: 100%; height: auto; flex-direction: row; align-items: stretch; gap: 0;
     padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
