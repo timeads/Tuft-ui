@@ -21,6 +21,7 @@ export interface TuftRailAttributes {
   "user-name"?: string;
   "sign-out-href"?: string;
   logo?: string;
+  ref?: unknown;
   class?: string;
   className?: string;
   children?: unknown;
@@ -29,6 +30,10 @@ export interface TuftRailAttributes {
 declare global {
   interface HTMLElementTagNameMap {
     "tuft-rail": TuftRail;
+  }
+  interface HTMLElementEventMap {
+    /** Fired when "Sign out" is clicked; preventDefault() to handle it in JS. */
+    "tuft-signout": CustomEvent;
   }
   // React 18 / 19 JSX support for <tuft-rail>
   namespace JSX {

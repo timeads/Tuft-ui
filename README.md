@@ -101,13 +101,27 @@ Lovable to "remove the colour variables from index.css and use the ones from tuf
 | `domain` | Defaults to `tuftlife.com`. Apps live at `help.tuftlife.com`, `stock.tuftlife.com` and so on. |
 | `logo` | Override the logo URL. You only need this if a bundler can't resolve `img/logo.png`. |
 
+**Signing out in JavaScript** (Supabase, Firebase…): keep `sign-out-href`, listen for the rail's
+`tuft-signout` event, and call `preventDefault()` to stop the link:
+
+```tsx
+const rail = useRef<HTMLElement>(null)
+useEffect(() => {
+  const el = rail.current
+  const onSignOut = (e: Event) => { e.preventDefault(); signOut() }
+  el?.addEventListener("tuft-signout", onSignOut)
+  return () => el?.removeEventListener("tuft-signout", onSignOut)
+}, [signOut])
+```
+
 Nav items are plain links or buttons with `class="tuft-nav-item"`. Inside each one:
 - an `<svg>` icon (17px; it turns ochre when active)
 - `<span class="tuft-nav-text">` for the label
 - optionally `<span class="tuft-count">` for a count
 
 Mark the active item with `aria-current="page"` or `class="active"`. Add `data-phone="hide"` to an item to
-leave it out of the phone tab bar. Group headings use `<div class="tuft-nav-label">`.
+move it from the phone tab bar into a "More in …" list in the Apps sheet. Keep about four items in the
+tab bar. Group headings use `<div class="tuft-nav-label">`.
 
 At different widths:
 - **Wider than 1240px:** a 228px rail with the logo, labels and the signed-in person.

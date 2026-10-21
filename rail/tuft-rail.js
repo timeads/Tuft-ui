@@ -14,6 +14,11 @@
 //
 // Attributes: app (current app id), domain (default tuftlife.com), user-name, sign-out-href, logo.
 // To change the app list, set TuftRail.apps before the first rail connects.
+//
+// Phones: items marked data-phone="hide" leave the tab bar and appear under "More in <app>" in the
+// Apps sheet; tapping one clicks the original, so client-side routers keep working.
+// Sign out: the link fires a cancelable "tuft-signout" event first; call preventDefault() to handle
+// it in JS (e.g. supabase.auth.signOut()) instead of following sign-out-href.
 
 const ICONS = {
   home: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',
@@ -154,7 +159,17 @@ nav { display: flex; flex-direction: column; gap: 1px; overflow-y: auto; min-hei
 .app[aria-current="page"] { font-weight: 700; }
 .app[aria-current="page"] .tile { background: var(--tuft-teal); color: var(--tuft-ochre); }
 .app .here { margin-left: auto; font-size: 11.5px; font-weight: 600; color: var(--tuft-ochre-text); }
-.sheet-me { display: none; }
+.sheet-me, .more { display: none; }
+.more-head { font: 600 11.5px var(--tuft-font-ui); color: var(--tuft-text-3); padding: 12px 10px 6px; border-top: 1px solid var(--tuft-border); margin-top: 6px; }
+.more-item {
+  display: flex; align-items: center; gap: 11px; width: 100%; padding: 10px; border: 0; border-radius: var(--tuft-radius-sm);
+  background: none; color: var(--tuft-text); font: 500 15px var(--tuft-font-ui); text-align: left; cursor: pointer;
+}
+.more-item:hover { background: var(--tuft-hover); }
+.more-item:focus-visible { outline: 2px solid var(--tuft-ochre); outline-offset: -2px; }
+.more-item svg { width: 17px; height: 17px; color: var(--tuft-text-2); }
+.more-item[aria-current="page"] { font-weight: 700; }
+.more-item[aria-current="page"] svg { color: var(--tuft-ochre-text); }
 @keyframes pop { from { opacity: 0; transform: translateY(-4px); } }
 
 /* ---------- Laptops: icon rail ---------- */
@@ -193,6 +208,8 @@ nav { display: flex; flex-direction: column; gap: 1px; overflow-y: auto; min-hei
   }
   .switcher:popover-open { animation: sheet .25s var(--tuft-ease); }
   .app { padding: 10px; font-size: 15px; }
+  .switcher { max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow-y: auto; }
+  .more:not(:empty) { display: block; }
   .sheet-me { display: flex; align-items: center; gap: 10px; margin-top: 6px; padding: 12px 10px 6px; border-top: 1px solid var(--tuft-border); font-size: 14px; }
   .sheet-me .name { flex: 1; }
   .sheet-me .signout { color: var(--tuft-text-2); font-size: 13px; padding: 6px 8px; }
@@ -238,6 +255,7 @@ export class TuftRail extends HTMLElement {
       <div class="switcher" id="${id}" popover="auto" role="dialog" aria-label="Switch app">
         <div class="switcher-head">Tuft Life apps</div>
         <div class="apps"></div>
+        <div class="more"></div>
         <div class="sheet-me">
           <span class="avatar" aria-hidden="true"></span>
           <span class="name"></span>
@@ -254,6 +272,12 @@ export class TuftRail extends HTMLElement {
     this._switcher.addEventListener("toggle", (e) => this._setExpanded(e.newState === "open"));
     this._onDocClick = (e) => { if (!e.composedPath().includes(this)) this._closeFallback(); };
     this._onKey = (e) => { if (e.key === "Escape") this._closeFallback(); };
+    for (const link of this.shadowRoot.querySelectorAll(".signout")) {
+      link.addEventListener("click", (e) => {
+        const ev = new CustomEvent("tuft-signout", { bubbles: true, composed: true, cancelable: true });
+        if (!this.dispatchEvent(ev)) e.preventDefault();
+      });
+    }
   }
 
   connectedCallback() {
@@ -294,9 +318,39 @@ export class TuftRail extends HTMLElement {
     const wide = window.matchMedia("(min-width: 1241px)").matches;
     this._switcher.style.left = `${wide ? r.left + 8 : r.right + 8}px`;
     this._switcher.style.top = `${wide ? r.bottom - 12 : r.top}px`;
+    this._renderMore();
     if (this._supportsPopover) this._switcher.showPopover();
     else { this._switcher.hidden = false; this._switcher.classList.add("fallback-open"); this._setExpanded(true); }
     this._switcher.querySelector('.app[aria-current="page"], .app')?.focus();
+  }
+
+  /** Phone sheet: the nav items hidden from the tab bar, rebuilt on each open so they stay current. */
+  _renderMore() {
+    const more = this.shadowRoot.querySelector(".more");
+    const hidden = [...this.querySelectorAll('.tuft-nav-item[data-phone="hide"]')];
+    if (!hidden.length) return more.replaceChildren();
+    const head = document.createElement("div");
+    head.className = "more-head";
+    const current = TuftRail.apps.find((a) => a.id === this.getAttribute("app"));
+    head.textContent = current ? `More in ${current.name}` : "More";
+    more.replaceChildren(
+      head,
+      ...hidden.map((item) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "more-item";
+        const svg = item.querySelector("svg");
+        if (svg) b.append(svg.cloneNode(true));
+        b.append((item.querySelector(".tuft-nav-text") || item).textContent.trim());
+        if (item.getAttribute("aria-current") === "page" || item.classList.contains("active")) b.setAttribute("aria-current", "page");
+        b.addEventListener("click", () => {
+          if (this._supportsPopover) this._switcher.hidePopover();
+          else this._closeFallback();
+          item.click();
+        });
+        return b;
+      }),
+    );
   }
 
   _closeFallback() {
