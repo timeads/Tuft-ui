@@ -1,0 +1,94 @@
+/* Building blocks for apps that don't use shadcn/ui (plain HTML, the support desk).
+   React + shadcn apps get the same look from shadcn.css instead. */
+
+/* ---------- App shell: rail on the left, content on the right; tab bar at the bottom on phones ---------- */
+.tuft-shell { display: grid; grid-template-columns: auto minmax(0, 1fr); height: 100vh; height: 100dvh; }
+.tuft-shell > main { min-width: 0; min-height: 0; overflow: auto; background: var(--tuft-bg); }
+@media (max-width: 760px) {
+  .tuft-shell { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
+  .tuft-shell > tuft-rail { order: 2; }
+}
+
+/* ---------- Type ---------- */
+.tuft-headline { font: 700 24px/1.2 var(--tuft-font-ui); letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+.tuft-title { font: 700 18px/1.3 var(--tuft-font-ui); letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+.tuft-title-sm { font: 700 15.5px/1.3 var(--tuft-font-ui); margin: 0; }
+.tuft-read { font: 400 14.5px/1.6 var(--tuft-font-read); max-width: 72ch; }
+.tuft-label { font: 600 12px/1.3 var(--tuft-font-ui); color: var(--tuft-text-2); }
+.tuft-muted { color: var(--tuft-text-3); }
+.tuft-mono { font-family: var(--tuft-font-mono); font-size: 12.5px; letter-spacing: -.01em; }
+
+/* ---------- Buttons: one ochre primary per screen; everything else default, dark or ghost ---------- */
+.tuft-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  height: 36px; padding: 0 14px; border-radius: var(--tuft-radius-sm);
+  border: 1px solid var(--tuft-border-strong); background: var(--tuft-surface); color: var(--tuft-text);
+  font: 600 13.5px var(--tuft-font-ui); cursor: pointer; white-space: nowrap; text-decoration: none;
+  transition: background .15s var(--tuft-ease), border-color .15s var(--tuft-ease), transform .1s var(--tuft-ease);
+}
+.tuft-btn:hover { background: var(--tuft-hover); color: var(--tuft-text); }
+.tuft-btn:active { transform: translateY(1px); }
+.tuft-btn:disabled { opacity: .5; cursor: default; transform: none; }
+.tuft-btn svg { width: 16px; height: 16px; flex: none; }
+.tuft-btn.primary { background: var(--tuft-ochre); border-color: var(--tuft-ochre); color: var(--tuft-on-ochre); box-shadow: var(--tuft-shadow-sm); }
+.tuft-btn.primary:hover { background: var(--tuft-ochre-hover); border-color: var(--tuft-ochre-hover); color: var(--tuft-on-ochre); }
+.tuft-btn.dark { background: var(--tuft-teal); border-color: var(--tuft-teal); color: var(--tuft-on-teal); }
+.tuft-btn.dark:hover { background: var(--tuft-teal-2); color: var(--tuft-on-teal); }
+.tuft-btn.ghost { border-color: transparent; background: transparent; color: var(--tuft-text-2); }
+.tuft-btn.ghost:hover { background: var(--tuft-hover); color: var(--tuft-text); }
+.tuft-btn.danger { color: var(--tuft-brick); }
+.tuft-btn.danger:hover { background: var(--tuft-brick-soft); color: var(--tuft-brick); }
+.tuft-btn.sm { height: 30px; padding: 0 10px; font-size: 12.5px; gap: 5px; }
+
+/* ---------- Fields ---------- */
+.tuft-field { display: grid; gap: 5px; align-content: start; font: 600 12px var(--tuft-font-ui); color: var(--tuft-text-2); }
+.tuft-input {
+  width: 100%; min-height: 36px; padding: 7px 11px; border-radius: var(--tuft-radius-sm);
+  border: 1px solid var(--tuft-border-strong); background: var(--tuft-surface); color: var(--tuft-text);
+  font: 400 14px var(--tuft-font-ui); outline: none; transition: border-color .15s, box-shadow .15s;
+}
+.tuft-input::placeholder { color: var(--tuft-text-3); }
+.tuft-input:hover { border-color: var(--tuft-text-3); }
+.tuft-input:focus { border-color: var(--tuft-ochre); box-shadow: 0 0 0 3px var(--tuft-ochre-soft); }
+textarea.tuft-input { resize: vertical; font: 400 14.5px/1.55 var(--tuft-font-read); }
+select.tuft-input {
+  appearance: none; padding-right: 30px; background-repeat: no-repeat; background-position: right 10px center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a736b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+@media (max-width: 760px) { .tuft-input { font-size: 16px; } } /* stops iOS zooming on focus */
+
+/* ---------- Badges: status speaks only in brand tones ---------- */
+.tuft-badge {
+  display: inline-flex; align-items: center; gap: 5px; height: 21px; padding: 0 8px; border-radius: 999px;
+  font: 600 11.5px var(--tuft-font-ui); background: var(--tuft-sunken); color: var(--tuft-text-2); white-space: nowrap;
+}
+.tuft-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .85; }
+.tuft-badge.plain::before { display: none; }
+.tuft-badge.open { background: var(--tuft-teal-soft); color: var(--tuft-teal-soft-ink); }
+.tuft-badge.pending { background: var(--tuft-ochre-soft); color: var(--tuft-ochre-text); }
+.tuft-badge.good { background: var(--tuft-mint-soft); color: var(--tuft-mint-ink); }
+.tuft-badge.bad { background: var(--tuft-brick-soft); color: var(--tuft-brick); }
+.tuft-badge.closed { background: var(--tuft-sunken); color: var(--tuft-text-3); }
+
+/* ---------- Surfaces ---------- */
+.tuft-panel { background: var(--tuft-panel); }
+.tuft-card {
+  background: var(--tuft-surface); border: 1px solid var(--tuft-border); border-radius: var(--tuft-radius-lg);
+  box-shadow: var(--tuft-shadow-sm); padding: 20px;
+}
+.tuft-notice { padding: 10px 14px; border-radius: var(--tuft-radius-sm); background: var(--tuft-sunken); color: var(--tuft-text-2); font-size: 13px; }
+.tuft-notice.warn { background: var(--tuft-ochre-soft); color: var(--tuft-ochre-text); }
+.tuft-notice.bad { background: var(--tuft-brick-soft); color: var(--tuft-brick); }
+.tuft-skeleton {
+  height: 10px; border-radius: 5px; background: var(--tuft-sunken);
+  background-image: linear-gradient(90deg, var(--tuft-sunken), var(--tuft-hover), var(--tuft-sunken));
+  background-size: 200% 100%; animation: tuft-shimmer 1.2s linear infinite;
+}
+@keyframes tuft-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.tuft-toast {
+  display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px; border-radius: var(--tuft-radius);
+  background: var(--tuft-teal); color: var(--tuft-on-teal); box-shadow: var(--tuft-shadow); font-weight: 500;
+}
+.tuft-toast svg { color: var(--tuft-ochre); width: 16px; height: 16px; }
+.tuft-toast.bad { background: var(--tuft-brick); color: #fff; }
+.tuft-toast.bad svg { color: #fff; }

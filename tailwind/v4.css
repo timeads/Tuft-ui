@@ -1,0 +1,92 @@
+/* Tailwind v4 theme. In your main CSS, after `@import "tailwindcss";`:
+     @import "tuft-ui/css/fonts.css";
+     @import "tuft-ui/css/tokens.css";
+     @import "tuft-ui/css/shadcn.css";
+     @import "tuft-ui/tailwind/v4.css";                                         */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-tuft-teal: var(--tuft-teal);
+  --color-tuft-teal-2: var(--tuft-teal-2);
+  --color-tuft-teal-3: var(--tuft-teal-3);
+  --color-tuft-teal-ink: var(--tuft-teal-ink);
+  --color-tuft-teal-soft: var(--tuft-teal-soft);
+  --color-tuft-teal-soft-ink: var(--tuft-teal-soft-ink);
+  --color-tuft-on-teal: var(--tuft-on-teal);
+  --color-tuft-on-teal-2: var(--tuft-on-teal-2);
+  --color-tuft-ochre: var(--tuft-ochre);
+  --color-tuft-ochre-hover: var(--tuft-ochre-hover);
+  --color-tuft-ochre-text: var(--tuft-ochre-text);
+  --color-tuft-ochre-soft: var(--tuft-ochre-soft);
+  --color-tuft-on-ochre: var(--tuft-on-ochre);
+  --color-tuft-brick: var(--tuft-brick);
+  --color-tuft-brick-soft: var(--tuft-brick-soft);
+  --color-tuft-mint: var(--tuft-mint);
+  --color-tuft-mint-soft: var(--tuft-mint-soft);
+  --color-tuft-mint-ink: var(--tuft-mint-ink);
+  --color-tuft-khaki: var(--tuft-khaki);
+  --color-tuft-stone: var(--tuft-stone);
+  --color-tuft-stone-2: var(--tuft-stone-2);
+  --color-tuft-stone-3: var(--tuft-stone-3);
+  --color-tuft-panel: var(--tuft-panel);
+  --color-tuft-surface: var(--tuft-surface);
+  --color-tuft-sunken: var(--tuft-sunken);
+  --color-tuft-hover: var(--tuft-hover);
+  --color-tuft-text: var(--tuft-text);
+  --color-tuft-text-2: var(--tuft-text-2);
+  --color-tuft-text-3: var(--tuft-text-3);
+  --color-tuft-border-strong: var(--tuft-border-strong);
+  --color-tuft-out: var(--tuft-out);
+  --color-tuft-out-border: var(--tuft-out-border);
+  --color-tuft-note: var(--tuft-note);
+  --color-tuft-note-border: var(--tuft-note-border);
+  --color-tuft-select: var(--tuft-select);
+
+  --radius-sm: var(--tuft-radius-sm);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--tuft-radius-lg);
+  --radius-2xl: var(--tuft-radius-xl);
+
+  --font-sans: var(--tuft-font-ui);
+  --font-read: var(--tuft-font-read);
+  --font-display: var(--tuft-font-display);
+  --font-mono: var(--tuft-font-mono);
+
+  --shadow-sm: var(--tuft-shadow-sm);
+  --shadow-float: var(--tuft-shadow);
+  --ease-tuft: var(--tuft-ease);
+}

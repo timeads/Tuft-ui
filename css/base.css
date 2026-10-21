@@ -1,0 +1,19 @@
+/* Page-level defaults: type, selection, focus, scrollbars. Safe to load in any app. */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--tuft-bg);
+  color: var(--tuft-text);
+  font: 14px/1.45 var(--tuft-font-ui);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--tuft-ochre-soft); color: var(--tuft-text); }
+input, textarea { caret-color: var(--tuft-ochre); }
+a { color: var(--tuft-ochre-text); text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { color: var(--tuft-brick); }
+:focus-visible { outline: 2px solid var(--tuft-ochre); outline-offset: 2px; }
+* { scrollbar-width: thin; scrollbar-color: var(--tuft-border-strong) transparent; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

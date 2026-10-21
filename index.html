@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tuft UI</title>
+  <link rel="icon" href="img/logo.png" />
+  <link rel="stylesheet" href="css/tuft.css" />
+  <script type="module" src="rail/tuft-rail.js"></script>
+  <style>
+    .page { max-width: 1040px; margin: 0 auto; padding: 28px 28px 64px; display: grid; gap: 16px; }
+    .page-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 8px; }
+    .page-head p { margin: 6px 0 0; color: var(--tuft-text-2); }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .swatch { border: 1px solid var(--tuft-border); border-radius: var(--tuft-radius); overflow: hidden; background: var(--tuft-surface); }
+    .swatch .chip { height: 56px; }
+    .swatch .meta { padding: 8px 10px; display: grid; gap: 2px; }
+    .swatch .meta b { font-size: 12.5px; }
+    .swatch .meta span { font: 12px var(--tuft-font-mono); color: var(--tuft-text-3); }
+    .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+    .card-head p { margin: 0; color: var(--tuft-text-3); font-size: 13px; }
+    .type > * + * { margin-top: 12px; }
+    .wordmark { font: 400 30px/1 var(--tuft-font-display); letter-spacing: .02em; text-transform: uppercase; color: var(--tuft-text); }
+    .stack { display: grid; gap: 12px; }
+    .msg { padding: 12px 16px; border-radius: var(--tuft-radius-lg); font: 400 14.5px/1.6 var(--tuft-font-read); max-width: 52ch; }
+    .msg.in { background: var(--tuft-surface); border: 1px solid var(--tuft-border); box-shadow: var(--tuft-shadow-sm); }
+    .msg.out { background: var(--tuft-out); border: 1px solid var(--tuft-out-border); justify-self: end; }
+    .msg.note { background: var(--tuft-note); border: 1px dashed var(--tuft-note-border); }
+    .msg.note b { display: block; font: 600 12px var(--tuft-font-ui); color: var(--tuft-ochre-text); margin-bottom: 2px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th { text-align: left; font: 600 12px var(--tuft-font-ui); color: var(--tuft-text-3); padding: 0 10px 8px; border-bottom: 1px solid var(--tuft-border); }
+    td { padding: 10px; border-bottom: 1px solid var(--tuft-border); }
+    tr:last-child td { border-bottom: 0; }
+    td.num, th.num { text-align: right; }
+    @media (max-width: 760px) {
+      .page { padding: 18px 16px 32px; }
+      .grid2 { grid-template-columns: 1fr; }
+      .hide-phone { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="tuft-shell">
+    <tuft-rail app="booking" user-name="Kim Lee" sign-out-href="#">
+      <a class="tuft-nav-item" href="#" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span class="tuft-nav-text">Sessions</span><span class="tuft-count">4</span>
+      </a>
+      <a class="tuft-nav-item" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="tuft-nav-text">Rosters</span>
+      </a>
+      <a class="tuft-nav-item" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.27 21a2 2 0 0 0 3.46 0"/><path d="M3.26 15.33A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.67C19.41 13.96 18 12.5 18 8A6 6 0 0 0 6 8c0 4.5-1.41 5.96-2.74 7.33"/></svg>
+        <span class="tuft-nav-text">Reminders</span>
+      </a>
+      <div class="tuft-nav-label">Studio</div>
+      <a class="tuft-nav-item" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="tuft-nav-text">Settings</span>
+      </a>
+    </tuft-rail>
+
+    <main>
+      <div class="page">
+        <header class="page-head">
+          <div>
+            <h1 class="tuft-headline">Tuft UI</h1>
+            <p class="tuft-read">The shared look for every Tuft Life app, taken from the support desk. The rail on the left is the real <code>&lt;tuft-rail&gt;</code> — click the logo to switch apps.</p>
+          </div>
+          <div class="row">
+            <label class="tuft-field" style="min-width:150px">Theme
+              <select class="tuft-input" id="theme">
+                <option value="">Follow my device</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </label>
+          </div>
+        </header>
+
+        <section class="tuft-card">
+          <div class="card-head"><h2 class="tuft-title-sm">Buttons</h2><p>One ochre action per screen.</p></div>
+          <div class="row">
+            <button class="tuft-btn primary">Send &amp; close</button>
+            <button class="tuft-btn">Save</button>
+            <button class="tuft-btn dark">Ship</button>
+            <button class="tuft-btn ghost">Cancel</button>
+            <button class="tuft-btn ghost danger">Delete</button>
+            <button class="tuft-btn sm">Small</button>
+            <button class="tuft-btn" disabled>Disabled</button>
+          </div>
+        </section>
+
+        <div class="grid2">
+          <section class="tuft-card">
+            <div class="card-head"><h2 class="tuft-title-sm">Status</h2><p>Brand tones only.</p></div>
+            <div class="row">
+              <span class="tuft-badge open">Open</span>
+              <span class="tuft-badge pending">Pending</span>
+              <span class="tuft-badge good">Paid</span>
+              <span class="tuft-badge bad">Oversold</span>
+              <span class="tuft-badge closed">Closed</span>
+              <span class="tuft-badge plain">VIP</span>
+            </div>
+            <div class="stack" style="margin-top:16px">
+              <div class="tuft-notice warn">Saturday's 2pm class is one seat from full.</div>
+              <div class="tuft-notice bad">Couldn't reach Shopify. We'll try again in a minute.</div>
+            </div>
+          </section>
+
+          <section class="tuft-card">
+            <div class="card-head"><h2 class="tuft-title-sm">Fields</h2></div>
+            <div class="stack">
+              <label class="tuft-field">Customer name<input class="tuft-input" placeholder="Jane Doe" /></label>
+              <label class="tuft-field">Workshop
+                <select class="tuft-input"><option>Intro to Tufting · Sat 2pm ET</option><option>Rug Finishing · Sun 11am ET</option></select>
+              </label>
+              <label class="tuft-field">Note<textarea class="tuft-input" rows="2" placeholder="Anything we should know?"></textarea></label>
+            </div>
+          </section>
+        </div>
+
+        <section class="tuft-card">
+          <div class="card-head"><h2 class="tuft-title-sm">Table</h2><p>Tabular numerals line up.</p></div>
+          <table>
+            <thead><tr><th>Session</th><th class="hide-phone">When</th><th class="num">Seats</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Intro to Tufting</td><td class="hide-phone">Sat, Nov 1 · 2:00 PM ET</td><td class="num">11 / 12</td><td><span class="tuft-badge pending">Almost full</span></td></tr>
+              <tr><td>Rug Finishing</td><td class="hide-phone">Sun, Nov 2 · 11:00 AM ET</td><td class="num">6 / 10</td><td><span class="tuft-badge open">Open</span></td></tr>
+              <tr><td>Kids Tuft Club</td><td class="hide-phone">Sat, Nov 8 · 10:00 AM ET</td><td class="num">8 / 8</td><td><span class="tuft-badge good">Full</span></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="grid2">
+          <section class="tuft-card type">
+            <div class="card-head"><h2 class="tuft-title-sm">Type</h2></div>
+            <div class="wordmark">Tuft the World</div>
+            <p class="tuft-muted tuft-label" style="margin-top:4px">Abril Fatface — the wordmark only</p>
+            <h3 class="tuft-headline">Chivo headline</h3>
+            <h3 class="tuft-title">Chivo title for cards and subjects</h3>
+            <p style="margin:0">Chivo body is what the interface says: labels, buttons, counts like 1,240.</p>
+            <p class="tuft-read" style="margin:0">Roboto is for words customers write or will read — emails, notes and replies — so they read like a letter.</p>
+          </section>
+
+          <section class="tuft-card">
+            <div class="card-head"><h2 class="tuft-title-sm">Conversation</h2></div>
+            <div class="stack">
+              <div class="msg in">Hi! Can I move my booking to the Sunday class? Something came up.</div>
+              <div class="msg out">Of course — you're all set for Sunday at 11am ET. See you then!</div>
+              <div class="msg note"><b>Internal note</b>Moved from Sat 2pm. No refund needed.</div>
+            </div>
+          </section>
+        </div>
+
+        <section class="tuft-card">
+          <div class="card-head"><h2 class="tuft-title-sm">Loading &amp; feedback</h2></div>
+          <div class="stack" style="max-width:420px">
+            <div class="tuft-skeleton" style="width:60%"></div>
+            <div class="tuft-skeleton" style="width:85%"></div>
+            <div class="tuft-skeleton" style="width:40%"></div>
+          </div>
+          <div class="row" style="margin-top:16px">
+            <span class="tuft-toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Booking moved</span>
+            <span class="tuft-toast bad">Couldn't save. Try again?</span>
+          </div>
+        </section>
+
+        <section class="tuft-card">
+          <div class="card-head"><h2 class="tuft-title-sm">Colours</h2><p>From tokens.json</p></div>
+          <div class="grid" id="swatches"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    const names = ["teal", "teal-3", "ochre", "ochre-text", "ochre-soft", "brick", "brick-soft", "mint-soft", "mint-ink", "teal-soft", "stone", "stone-2", "panel", "sunken", "text", "text-3"];
+    const grid = document.getElementById("swatches");
+    function paint() {
+      const css = getComputedStyle(document.documentElement);
+      grid.replaceChildren(...names.map((n) => {
+        const el = document.createElement("div");
+        el.className = "swatch";
+        el.innerHTML = `<div class="chip" style="background:var(--tuft-${n})"></div><div class="meta"><b></b><span></span></div>`;
+        el.querySelector("b").textContent = n;
+        el.querySelector("span").textContent = css.getPropertyValue(`--tuft-${n}`).trim();
+        return el;
+      }));
+    }
+    const theme = document.getElementById("theme");
+    try { theme.value = localStorage.getItem("tuft-theme") || ""; } catch {}
+    function apply() {
+      if (theme.value) document.documentElement.dataset.theme = theme.value;
+      else delete document.documentElement.dataset.theme;
+      try { localStorage.setItem("tuft-theme", theme.value); } catch {}
+      paint();
+    }
+    theme.addEventListener("change", apply);
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint);
+    apply();
+  </script>
+</body>
+</html>

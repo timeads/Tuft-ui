@@ -1,0 +1,107 @@
+/* Generated from tokens.json by scripts/build.mjs — do not edit by hand. */
+/* shadcn/ui theme variables mapped onto the Tuft brand. Import after tokens.css. */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 16.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 16.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 16.9%;
+  --primary: 37.3 64.5% 47.5%;
+  --primary-foreground: 180 25.7% 13.7%;
+  --secondary: 33.3 22% 92%;
+  --secondary-foreground: 0 0% 16.9%;
+  --muted: 33.3 22% 92%;
+  --muted-foreground: 32 7.5% 39.4%;
+  --accent: 33.3 27.3% 93.5%;
+  --accent-foreground: 0 0% 16.9%;
+  --destructive: 6.9 66% 41.6%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 30 19.4% 87.8%;
+  --input: 28 13.3% 77.8%;
+  --ring: 37.3 64.5% 47.5%;
+  --sidebar-background: 180 25.8% 17.5%;
+  --sidebar-foreground: 164 12% 75.5%;
+  --sidebar-primary: 37.3 64.5% 47.5%;
+  --sidebar-primary-foreground: 180 25.7% 13.7%;
+  --sidebar-accent: 180 22.3% 27.3%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 180 23.9% 22.2%;
+  --sidebar-ring: 37.3 64.5% 47.5%;
+  --chart-1: 180 22.3% 27.3%;
+  --chart-2: 37.3 64.5% 47.5%;
+  --chart-3: 6.9 66% 41.6%;
+  --chart-4: 132 49.2% 23.9%;
+  --chart-5: 51.4 15.7% 65.1%;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    --background: 30 4% 9.8%;
+    --foreground: 36 23.8% 91.8%;
+    --card: 30 6.5% 12.2%;
+    --card-foreground: 36 23.8% 91.8%;
+    --popover: 30 6.5% 12.2%;
+    --popover-foreground: 36 23.8% 91.8%;
+    --primary: 37.2 65.8% 52.9%;
+    --primary-foreground: 36 62.5% 6.3%;
+    --secondary: 30 7.5% 15.7%;
+    --secondary-foreground: 36 23.8% 91.8%;
+    --muted: 30 7.5% 15.7%;
+    --muted-foreground: 34.7 8.4% 55.5%;
+    --accent: 34.3 10.1% 13.5%;
+    --accent-foreground: 36 23.8% 91.8%;
+    --destructive: 7.9 67.5% 62.5%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 33.3 9.5% 18.6%;
+    --input: 32.3 9.6% 26.5%;
+    --ring: 37.2 65.8% 52.9%;
+    --sidebar-background: 180 25.9% 10.6%;
+    --sidebar-foreground: 167.4 11% 66.1%;
+    --sidebar-primary: 37.2 65.8% 52.9%;
+    --sidebar-primary-foreground: 36 62.5% 6.3%;
+    --sidebar-accent: 180 23.1% 20.4%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 180 24.7% 15.1%;
+    --sidebar-ring: 37.2 65.8% 52.9%;
+    --chart-1: 180 23.1% 20.4%;
+    --chart-2: 37.2 65.8% 52.9%;
+    --chart-3: 7.9 67.5% 62.5%;
+    --chart-4: 128.1 51.3% 77.5%;
+    --chart-5: 51.4 15.7% 65.1%;
+  }
+}
+:root[data-theme="dark"], :root.dark {
+  --background: 30 4% 9.8%;
+  --foreground: 36 23.8% 91.8%;
+  --card: 30 6.5% 12.2%;
+  --card-foreground: 36 23.8% 91.8%;
+  --popover: 30 6.5% 12.2%;
+  --popover-foreground: 36 23.8% 91.8%;
+  --primary: 37.2 65.8% 52.9%;
+  --primary-foreground: 36 62.5% 6.3%;
+  --secondary: 30 7.5% 15.7%;
+  --secondary-foreground: 36 23.8% 91.8%;
+  --muted: 30 7.5% 15.7%;
+  --muted-foreground: 34.7 8.4% 55.5%;
+  --accent: 34.3 10.1% 13.5%;
+  --accent-foreground: 36 23.8% 91.8%;
+  --destructive: 7.9 67.5% 62.5%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 33.3 9.5% 18.6%;
+  --input: 32.3 9.6% 26.5%;
+  --ring: 37.2 65.8% 52.9%;
+  --sidebar-background: 180 25.9% 10.6%;
+  --sidebar-foreground: 167.4 11% 66.1%;
+  --sidebar-primary: 37.2 65.8% 52.9%;
+  --sidebar-primary-foreground: 36 62.5% 6.3%;
+  --sidebar-accent: 180 23.1% 20.4%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 180 24.7% 15.1%;
+  --sidebar-ring: 37.2 65.8% 52.9%;
+  --chart-1: 180 23.1% 20.4%;
+  --chart-2: 37.2 65.8% 52.9%;
+  --chart-3: 7.9 67.5% 62.5%;
+  --chart-4: 128.1 51.3% 77.5%;
+  --chart-5: 51.4 15.7% 65.1%;
+}

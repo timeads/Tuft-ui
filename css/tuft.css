@@ -1,0 +1,6 @@
+/* Everything for a plain-HTML app in one file:
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/css/tuft.css"> */
+@import url("./fonts.css");
+@import url("./tokens.css");
+@import url("./base.css");
+@import url("./components.css");
