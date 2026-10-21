@@ -124,9 +124,9 @@ nav { display: flex; flex-direction: column; gap: 1px; overflow-y: auto; min-hei
 
 .me { display: flex; align-items: center; gap: 10px; padding: 12px 8px 4px; border-top: 1px solid rgba(255,255,255,.09); margin-top: 10px; font-size: 13px; }
 .me[hidden] { display: none; }
-.who { display: grid; min-width: 0; }
+.who { display: grid; min-width: 0; flex: 1; }
 .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.signout { color: var(--tuft-on-teal-2); font-size: 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; }
+.signout { color: var(--tuft-on-teal-2); font-size: 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; flex: none; white-space: nowrap; }
 .signout svg { width: 13px; height: 13px; }
 .signout:hover { color: var(--tuft-ochre); }
 .signout:focus-visible { outline: 2px solid var(--tuft-ochre); outline-offset: 2px; }
