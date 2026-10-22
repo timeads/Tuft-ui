@@ -106,15 +106,16 @@ button { font: inherit; color: inherit; }
 svg { width: 17px; height: 17px; flex: none; }
 
 .brand {
-  display: grid; justify-items: start; gap: 12px; padding: 2px 10px 26px; margin: 0; border: 0; background: none;
-  cursor: pointer; text-align: left; border-radius: var(--tuft-radius-sm); width: 100%;
+  display: grid; justify-items: center; gap: 12px; padding: 2px 10px 26px; margin: 0; border: 0; background: none;
+  cursor: pointer; text-align: center; border-radius: var(--tuft-radius-sm); width: 100%;
 }
 .brand:focus-visible { outline: 2px solid var(--tuft-ochre); outline-offset: 2px; }
 .logo { width: 112px; height: auto; aspect-ratio: 587 / 580; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
 .sub {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 8px;
   font: 700 10.5px var(--tuft-font-ui); letter-spacing: .22em; text-transform: uppercase; color: #e3ad55;
 }
+.sub-text { margin-right: -.22em; } /* cancel the trailing letter-space so the word sits centred */
 .sub svg { width: 13px; height: 13px; transition: transform .15s var(--tuft-ease); }
 .brand:hover .sub svg { transform: translateY(1px); }
 
