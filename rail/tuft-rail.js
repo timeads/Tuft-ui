@@ -65,6 +65,7 @@ tuft-rail { display: block; min-height: 0; }
   margin-left: auto; min-width: 22px; height: 20px; padding: 0 6px; border-radius: 999px; display: inline-grid; place-items: center;
   font: 700 11.5px var(--tuft-font-ui); color: var(--tuft-on-teal-2); background: rgba(255, 255, 255, .07);
 }
+.tuft-count[hidden] { display: none; }
 .tuft-nav-item[aria-current="page"] .tuft-count, .tuft-nav-item.active .tuft-count { background: var(--tuft-ochre); color: var(--tuft-on-ochre); }
 .tuft-nav-label {
   font: 600 10.5px var(--tuft-font-ui); text-transform: uppercase; letter-spacing: .16em;

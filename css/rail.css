@@ -1,0 +1,12 @@
+/* <tuft-rail> before its script has run.
+   The rail's own styles (icon sizes, the teal panel) arrive with rail/tuft-rail.js. Until then the
+   browser would draw the nav items as plain links with full-size icons, and the page would jump
+   when the rail appears. This holds the rail's space as an empty teal panel instead. Load it in
+   <head> (tuft.css already includes it) so it applies on the very first paint. */
+tuft-rail:not(:defined) { display: block; width: 228px; height: 100%; min-height: 0; background: var(--tuft-teal); }
+tuft-rail:not(:defined) > * { display: none; }
+@media (max-width: 1240px) { tuft-rail:not(:defined) { width: 64px; } }
+@media (max-width: 760px) { tuft-rail:not(:defined) { width: auto; height: calc(57px + env(safe-area-inset-bottom)); } }
+
+/* A count the app has hidden stays hidden (its display: inline-grid would otherwise win). */
+.tuft-count[hidden] { display: none; }

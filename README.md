@@ -75,6 +75,7 @@ dependency pre-bundling can break the rail's own relative logo URL.
 
 React Router's `NavLink` sets `aria-current="page"` on the active link, and the rail styles it automatically.
 `.tuft-shell` comes from `css/components.css`; import that too if you want it, or lay the page out yourself.
+Also load `css/rail.css` in `<head>` (`tuft.css` includes it): it holds the rail's space as a plain teal panel until `rail/tuft-rail.js` has loaded, so the nav icons don't flash at full size on each page load.
 
 **Lovable apps that can't run `npm install`:** paste this into `index.html` instead, then ask
 Lovable to "remove the colour variables from index.css and use the ones from tuft-ui":
