@@ -20,8 +20,8 @@ The CDN links below are pinned to a version tag (`@1`). When you bump the versio
 ### Plain HTML (the support desk)
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/tuft.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/rail/tuft-rail.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@main/css/tuft.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@main/rail/tuft-rail.js"></script>
 
 <div class="tuft-shell">
   <tuft-rail app="help" user-name="Kim Lee" sign-out-href="/logout">
@@ -81,10 +81,10 @@ Also load `css/rail.css` in `<head>` (`tuft.css` includes it): it holds the rail
 Lovable to "remove the colour variables from index.css and use the ones from tuft-ui":
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/shadcn.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/rail/tuft-rail.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@main/css/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@main/css/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@main/css/shadcn.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@main/rail/tuft-rail.js"></script>
 ```
 
 ### Apps that use Tailwind's stock colours (gray, red, amber …)
@@ -172,7 +172,7 @@ Tailwind's `dark:` utilities only respond to the forced forms.
 4. Look at `index.html` in light and dark.
 5. Commit, merge, then release from `main`: bump `version` in `package.json`, tag it and push the tag
    (`git tag v1.2.0 && git push origin v1.2.0`). Then purge the CDN so apps pick it up now rather than
-   within 12 hours: open `https://purge.jsdelivr.net/gh/timeads/tuft-ui@1/<file>` for each changed file
+   within 12 hours: open `https://purge.jsdelivr.net/gh/timeads/tuft-ui@main/<file>` for each changed file
    (`css/tuft.css`, `css/tokens.css`, `css/shadcn.css`, `css/rail.css`, `css/fonts.css`, `rail/tuft-rail.js`).
 6. Anything that would break an app (a renamed variable or class, a removed attribute) is a new major
    version (`v2.0.0`); apps move to `@2` one at a time.
