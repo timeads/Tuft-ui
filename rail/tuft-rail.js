@@ -10,13 +10,13 @@
 //
 // The rail draws the logo, the app switcher and the signed-in person; each app supplies its own
 // nav items as children. Desktop: 228px rail. ≤1240px: 64px icon rail. ≤760px: bottom tab bar
-// with an "Apps" tab that opens the switcher as a sheet.
+// with a grid tab that opens the switcher as a sheet.
 //
 // Attributes: app (current app id), domain (default tuftlife.com), user-name, sign-out-href, logo.
 // To change the app list, set TuftRail.apps before the first rail connects.
 //
 // Phones: items marked data-phone="hide" leave the tab bar and appear under "More in <app>" in the
-// Apps sheet; tapping one clicks the original, so client-side routers keep working.
+// grid sheet; tapping one clicks the original, so client-side routers keep working.
 // Sign out: the link fires a cancelable "tuft-signout" event first; call preventDefault() to handle
 // it in JS (e.g. supabase.auth.signOut()) instead of following sign-out-href.
 
@@ -253,7 +253,7 @@ export class TuftRail extends HTMLElement {
           <span class="who"><span class="name"></span></span>
           <a class="signout" title="Sign out">${icon("logout")}<span>Sign out</span></a>
         </div>
-        <button class="apps-tab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="${id}">${icon("grid")}<span>Apps</span></button>
+        <button class="apps-tab" type="button" aria-label="More pages and apps" title="More pages and apps" aria-haspopup="true" aria-expanded="false" aria-controls="${id}">${icon("grid")}</button>
       </div>
       <div class="switcher" id="${id}" popover="auto" role="dialog" aria-label="Switch app">
         <div class="switcher-head">Tuft Life apps</div>

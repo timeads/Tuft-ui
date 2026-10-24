@@ -15,13 +15,13 @@ status colours, when to use which font) are in **DESIGN.md**.
 
 ## Using it
 
-The CDN links below are pinned to a version tag (`@v0.1.0`). When you bump the version, update the tag in each app.
+The CDN links below are pinned to a version tag (`@1`). When you bump the version, update the tag in each app.
 
 ### Plain HTML (the support desk)
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/css/tuft.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/rail/tuft-rail.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/tuft.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/rail/tuft-rail.js"></script>
 
 <div class="tuft-shell">
   <tuft-rail app="help" user-name="Kim Lee" sign-out-href="/logout">
@@ -81,10 +81,10 @@ Also load `css/rail.css` in `<head>` (`tuft.css` includes it): it holds the rail
 Lovable to "remove the colour variables from index.css and use the ones from tuft-ui":
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/css/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/css/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/css/shadcn.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@v0.1.0/rail/tuft-rail.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/fonts.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/css/shadcn.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/timeads/tuft-ui@1/rail/tuft-rail.js"></script>
 ```
 
 ### Apps that use Tailwind's stock colours (gray, red, amber …)
@@ -170,6 +170,11 @@ Tailwind's `dark:` utilities only respond to the forced forms.
 2. Run `npm run build`. This regenerates `css/tokens.css` and `css/shadcn.css`; never edit those by hand.
 3. Run `npm test`. It checks that every variable used is defined and that text colours meet WCAG AA contrast (4.5:1) in both modes.
 4. Look at `index.html` in light and dark.
-5. Commit, then tag a new version (`git tag v0.2.0 && git push --tags`) and bump the tag in each app.
+5. Commit, merge, then release from `main`: bump `version` in `package.json`, tag it and push the tag
+   (`git tag v1.2.0 && git push origin v1.2.0`). Then purge the CDN so apps pick it up now rather than
+   within 12 hours: open `https://purge.jsdelivr.net/gh/timeads/tuft-ui@1/<file>` for each changed file
+   (`css/tuft.css`, `css/tokens.css`, `css/shadcn.css`, `css/rail.css`, `css/fonts.css`, `rail/tuft-rail.js`).
+6. Anything that would break an app (a renamed variable or class, a removed attribute) is a new major
+   version (`v2.0.0`); apps move to `@2` one at a time.
 
 Nothing secret ever goes in this repo. It's public, so that apps and the CDN can load it without keys.
