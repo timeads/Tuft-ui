@@ -15,7 +15,7 @@ status colours, when to use which font) are in **DESIGN.md**.
 
 ## Using it
 
-The CDN links below are pinned to a version tag (`@1`). When you bump the version, update the tag in each app.
+The CDN links below follow the `main` branch (`@main`), so every merge reaches every app without touching it. jsDelivr can take up to 12 hours to notice a merge; the steps below purge it straight away. A change that would break an app goes on a new branch (`v2`), which each app opts into.
 
 ### Plain HTML (the support desk)
 
@@ -170,11 +170,11 @@ Tailwind's `dark:` utilities only respond to the forced forms.
 2. Run `npm run build`. This regenerates `css/tokens.css` and `css/shadcn.css`; never edit those by hand.
 3. Run `npm test`. It checks that every variable used is defined and that text colours meet WCAG AA contrast (4.5:1) in both modes.
 4. Look at `index.html` in light and dark.
-5. Commit, merge, then release from `main`: bump `version` in `package.json`, tag it and push the tag
-   (`git tag v1.2.0 && git push origin v1.2.0`). Then purge the CDN so apps pick it up now rather than
-   within 12 hours: open `https://purge.jsdelivr.net/gh/timeads/tuft-ui@main/<file>` for each changed file
-   (`css/tuft.css`, `css/tokens.css`, `css/shadcn.css`, `css/rail.css`, `css/fonts.css`, `rail/tuft-rail.js`).
-6. Anything that would break an app (a renamed variable or class, a removed attribute) is a new major
-   version (`v2.0.0`); apps move to `@2` one at a time.
+5. Open a PR and merge it: merging to `main` is the release. Then purge the CDN so apps pick it up now
+   rather than within 12 hours: open `https://purge.jsdelivr.net/gh/timeads/tuft-ui@main/<file>` for each
+   changed file (`css/tuft.css`, `css/tokens.css`, `css/shadcn.css`, `css/rail.css`, `css/fonts.css`,
+   `rail/tuft-rail.js`).
+6. Anything that would break an app (a renamed variable or class, a removed attribute) goes on a `v2`
+   branch instead; apps move to `@v2` one at a time.
 
 Nothing secret ever goes in this repo. It's public, so that apps and the CDN can load it without keys.
