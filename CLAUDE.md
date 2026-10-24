@@ -29,8 +29,8 @@ covers how apps consume it.
    Every app — plain HTML, React, Lovable — must be able to use it.
 4. **Stay framework-free.** The rail is a web component so it works everywhere; don't make it React-only.
 5. **Brand variables are prefixed `--tuft-`** so they never collide with an app's own or shadcn's names.
-6. **Every merge is a release.** Apps follow `@1` (the latest 1.x tag), so tag `vX.Y.Z` after merging, purge jsDelivr
-   (README, "Changing the design") and say what changed. Breaking changes need a new major version (`@2`).
+6. **Every merge to `main` is a release.** Apps load `@main` from jsDelivr, so after merging, purge jsDelivr
+   (README, "Changing the design") and say what changed. Breaking changes go on a `v2` branch apps opt into.
 7. Keep the support desk (timeads/helpdesk) and this repo in step — if a token changes here, it should change there.
 
 ## Conventions
